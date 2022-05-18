@@ -1,6 +1,7 @@
 package com.example.springapp.controller;
 
 
+import com.example.springapp.task.Status;
 import com.example.springapp.task.Task;
 import com.example.springapp.task.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,15 @@ public class MainController {
     @GetMapping
     public ResponseEntity<List<Task>> exhibitTasks() {
         return ResponseEntity.ok(taskService.exhibitTasks());
+    }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Task> updateTaskStatus(@RequestBody Status status, @PathVariable Integer id) {
+        try {
+            return ResponseEntity.ok(taskService.updateTaskStatus(status, id));
+        } catch (InstanceNotFoundException exception) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

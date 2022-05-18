@@ -36,4 +36,9 @@ public class Task {
         return this;
     }
 
+    public Task updateStatus(Status status) {
+        this.status = status;
+        return this;
+    }
+
 }

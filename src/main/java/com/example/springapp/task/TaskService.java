@@ -9,4 +9,6 @@ public interface TaskService {
     Task updateTask(Task task, int taskID) throws InstanceNotFoundException;
 
     List<Task> exhibitTasks();
+
+    Task updateTaskStatus(Status status, int taskID) throws InstanceNotFoundException;
 }

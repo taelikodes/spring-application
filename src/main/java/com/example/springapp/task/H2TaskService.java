@@ -36,4 +36,14 @@ public class H2TaskService implements TaskService {
     public List<Task> exhibitTasks() {
         return taskRepository.findAll();
     }
+
+    @Override
+    public Task updateTaskStatus(Status status, int taskID) throws InstanceNotFoundException {
+        Optional<Task> databaseTask = taskRepository.findById(taskID);
+        if (databaseTask.isEmpty()) {
+            throw new InstanceNotFoundException();
+        }
+
+        return taskRepository.save(databaseTask.get().updateStatus(status));
+    }
 }
